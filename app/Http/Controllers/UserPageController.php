@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Helper;
+use App\Http\Controllers\Controller;
+use App\Models\Page;
+use App\Models\Room;
+use Illuminate\Http\Request;
+
+class UserPageController extends Controller
+{
+    public function home()
+    {
+//        return view('front.home');
+        return 'home';
+    }
+}
