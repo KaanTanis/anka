@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helper;
 use App\Http\Controllers\Controller;
-use App\Models\Page;
+use App\Models\Post;
 use App\Models\Room;
 use Illuminate\Http\Request;
 

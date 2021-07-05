@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EmailRequest;
 use App\Mail\ContactForm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 /**
  * Class EmailController
@@ -13,16 +15,18 @@ use Illuminate\Support\Facades\Mail;
 class EmailController extends Controller
 {
     /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param EmailRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function contactForm(Request $request): \Illuminate\Http\RedirectResponse
+    public function contactForm(EmailRequest $request): \Illuminate\Http\JsonResponse
     {
+        $request->merge(['subject' => 'Bilgi almak istiyorum']);
+
         Mail::send(new ContactForm($request->all()));
 
-        return back()->with([
+        return response()->json([
             'status' => 'success',
-            'message' => __('Mesajınız başarıyla iletişilmiştir.')
+            'message' => [__('Mesajınız başarıyla iletişilmiştir.')]
         ]);
     }
 }

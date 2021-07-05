@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Helper;
 use App\Http\Requests\PageRequest;
-use App\Models\Page;
+use App\Models\Post;
 use Illuminate\Http\Request;
-use MongoDB\BSON\Type;
 
 /**
  * Class PageController
@@ -21,7 +20,12 @@ class PageController extends Controller
     public function __construct()
     {
         $type = \request()->type;
-        if (! in_array($type, Helper::$pages))
+        $pages = [];
+        foreach (Helper::pages_details() as $pages_detail) {
+            $pages[] = $pages_detail['method_name'];
+        }
+
+        if (! in_array($type, $pages))
             abort(404);
     }
 
@@ -31,27 +35,27 @@ class PageController extends Controller
      */
     public function index($type)
     {
-        $pages = Page::where('type', $type)->orderBy('order')->get();
+        $pages = Post::where('type', $type)->orderBy('order')->get();
         return view('admin.pages.index', compact('pages'));
     }
 
     /**
      * @param $type
-     * @param Page $page
+     * @param Post $page
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function edit($type, Page $page)
+    public function edit($type, Post $page)
     {
         return view('admin.pages.edit', compact('page'));
     }
 
     /**
      * @param $type
-     * @param Page $page
+     * @param Post $page
      * @param Request $pageRequest
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function updateOrCreate($type, Page $page, PageRequest $pageRequest)
+    public function updateOrCreate($type, Post $page, PageRequest $pageRequest)
     {
         $data = $pageRequest->all();
         $fieldFiles = $pageRequest->file();
@@ -97,11 +101,11 @@ class PageController extends Controller
 
     /**
      * @param $type
-     * @param Page $page
+     * @param Post $page
      * @param $imageId
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroyImage($type, Page $page, $imageId)
+    public function destroyImage($type, Post $page, $imageId)
     {
         $data = $page->images;
 
@@ -124,10 +128,10 @@ class PageController extends Controller
 
     /**
      * @param $type
-     * @param Page $page
+     * @param Post $page
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($type, Page $page)
+    public function destroy($type, Post $page)
     {
         $page->delete();
         // todo: destroy images
@@ -139,6 +143,22 @@ class PageController extends Controller
         ]);
     }
 
+    public function destroySingleImage($type, Post $page)
+    {
+        if(\request()->table_name) {
+            $page->update([\request()->table_name => null]);
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'message' => __('Silme işlemi başarılı'),
+            /*'redirect' => route('admin.pages.edit', [
+                'type' => \request()->type,
+                'page' => $page->id
+            ])*/
+        ]);
+    }
+
     /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
@@ -147,7 +167,7 @@ class PageController extends Controller
     {
         $order = 1;
         foreach ($request->all() as $item => $val) {
-            Page::find($val)->update(['order' => $order++]);
+            Post::find($val)->update(['order' => $order++]);
         }
         return response()->json([
             'status' => 'success',

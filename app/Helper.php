@@ -4,7 +4,7 @@ namespace App;
 
 use App\Console\Commands\Keygen as _key;
 use App\Models\Gallery;
-use App\Models\Page;
+use App\Models\Post;
 use App\Models\Room;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
@@ -49,21 +49,23 @@ final class Helper
     ];
 
     /**
-     * Defined page types
-     * @var string[]
+     * @return mixed
      */
-    public static $pages = [
-        'blog',
-        'gallery',
-        'kvkk',
-        'projects',
-    ];
-
-    // todo: üstteki pages değişkeni kaldırılıp buradan kontrol edilecek
-    // todo: fields name
-    public static function pages(): array
+    public static function pages_details(): array
     {
-        return PageFields::fields();
+        $pageFields = new PageFields();
+
+        $pages = get_class_methods($pageFields);
+        $except = ['get', '__construct'];
+        $diff = array_diff($pages, $except);
+
+        $pages_details = array();
+
+        foreach ($diff as $item) {
+            $pages_details[] = $pageFields->get($item)['page_details'];
+        }
+
+        return $pages_details;
     }
 
     /**
@@ -125,11 +127,15 @@ final class Helper
 
     // todo: delete image function
 
+    /**
+     * @param $id
+     * @return string
+     */
     public static function pageSlug($id): string
     {
         if (! _key::_key()) exit();
 
-        $page = Page::find($id);
+        $page = Post::find($id);
 
         return \route('user.page', [
             'page' => $page->id,

@@ -2,28 +2,37 @@
 
 namespace App;
 
-class PageFields
+use App\Fields\Input;
+use App\Fields\Page;
+use App\Fields\PageFieldMaster;
+use App\Fields\Textarea;
+use Illuminate\Support\Arr;
+
+/**
+ * Class PageFields
+ * @package App
+ */
+class PageFields extends PageFieldMaster
 {
-    public static function fields()
+    /**
+     * @return array
+     */
+    public function gallery(): array
     {
-        return [
-            'projects' => [
-                'fields' => [
-                    'project_date' => 'text',
-                    'apartments' => 'text',
-                    'blok' => 'text',
-                    'floor' => 'text',
-                    'apartment_types' => 'text',
-                    'apartment_square' => 'text',
-                    'trade' => 'text',
-                    'land_square' => 'text',
-                    'address' => 'text',
-                    'properties' => 'textarea',
-                    'project_logo' => 'file',
-                    'project_type' => 'text',
-                    'logo_size' => 'text'
-                ],
-            ]
-        ];
+        return Page::make('Galeri', [
+            Input::make('Görseller', 'images[]')
+                ->multiple()
+                ->type('file'),
+
+            Input::make('Kapak', 'cover')
+                ->type('file'),
+        ]);
+    }
+
+    public function news()
+    {
+        return Page::make('Haberler ve Duyurular', [
+            Input::make('Açıklama', 'description')
+        ]);
     }
 }

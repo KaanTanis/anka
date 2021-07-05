@@ -8,33 +8,11 @@
 
                 <hr>
                 <li class="menu-title">{{ __('Sayfalar') }}
-
-                <li class="{{ Helper::active('admin.pages.index', ['type' => 'projects'], 3) }}">
-                    <a href="{{ route('admin.pages.index', ['type' => 'projects'], 3) }}"><i class="fa fa-building"></i> <span>{{ __('Projeler') }}</span></a>
-                </li>
-
-                {{--<li class="{{ Helper::active('admin.pages.index', ['type' => 'gallery'], 3) }}">
-                    <a href="{{ route('admin.pages.index', ['type' => 'gallery'], 3) }}"><i class="fa fa-picture-o"></i> <span>{{ __('Galeri') }}</span></a>
-                </li>
-
-                <li class="{{ Helper::active('admin.pages.index', ['type' => 'blog'], 3) }}">
-                    <a href="{{ route('admin.pages.index', ['type' => 'blog'], 3) }}"><i class="fa fa-paper-plane"></i> <span>{{ __('Blog') }}</span></a>
-                </li>--}}
-
-                <li class="{{ Helper::active('admin.pages.index', ['type' => 'kvkk'], 3) }}">
-                    <a href="{{ route('admin.pages.index', ['type' => 'kvkk'], 3) }}"><i class="fa fa-lock"></i> <span>{{ __('KVKK') }}</span></a>
-                </li>
-
-                <li class="{{ Helper::active('admin.pages.index', ['type' => 'blog'], 3) }}">
-                    <a href="{{ route('admin.pages.index', ['type' => 'blog'], 3) }}"><i class="fa fa-file-text"></i> <span>{{ __('Blog') }}</span></a>
-                </li>
-
-                <li class="menu-title">{{ __('Site Genel') }}</li>
-                <li class="{{ Helper::active('admin.sliders.index') }}">
-                    <a href="{{ route('admin.sliders.index') }}"><i class="fa fa-picture-o"></i> <span>{{ __('Slider') }}</span></a>
-                </li>
-
-
+                @foreach(\App\Helper::pages_details() as $detail)
+                    <li class="{{ Helper::active('admin.pages.index', ['type' => $detail['method_name']]) }}">
+                        <a href="{{ route('admin.pages.index', ['type' => $detail['method_name']]) }}"><i class="{{ $detail['icon'] }}"></i> <span>{{ $detail['page_name'] }}</span></a>
+                    </li>
+                @endforeach
             </ul>
         </div>
     </div>

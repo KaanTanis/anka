@@ -8,14 +8,12 @@
 @stack('footer')
 
 <script src="/assets/js/app.js"></script>
-
-
 <script>
-$(function () {
-    $('.loading').fadeOut(600, function () {
-        $(this).remove()
-    });
-})
+    $(function () {
+        $('.loading').fadeOut(600, function () {
+            $(this).remove()
+        });
+    })
 </script>
 
 </body>
