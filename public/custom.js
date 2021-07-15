@@ -16,7 +16,7 @@ function imgDestroyBtn(url, id = null) {
                 })
                 if(res.data.status === 'success') {
                     if ($('#image_id_' + id).length) {
-                        $(this).fadeOut(600, function () {
+                        $($('#image_id_' + id)).fadeOut(600, function () {
                             $(this).remove();
                         })
                     }

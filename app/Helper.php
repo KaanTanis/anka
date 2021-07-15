@@ -93,10 +93,14 @@ final class Helper
 
         foreach ($path_size_list as $size) {
             $intervention = Image::make($image);
+            $originalSize = $intervention->width();
 
             $path = public_path("uploads/images/w{$size}/" . $date);
             if (! File::exists($path))
                 File::makeDirectory($path, 755, true, true);
+
+            if ($originalSize <= $size)
+                $size = $originalSize;
 
             $intervention->resize($size, null, function ($constraint) {
                 $constraint->aspectRatio();

@@ -52,7 +52,7 @@ class PageController extends Controller
     /**
      * @param $type
      * @param Post $page
-     * @param Request $pageRequest
+     * @param PageRequest $pageRequest
      * @return \Illuminate\Http\RedirectResponse
      */
     public function updateOrCreate($type, Post $page, PageRequest $pageRequest)
@@ -79,7 +79,7 @@ class PageController extends Controller
         $data['banner'] = $banner ?? $page->banner;
 
         if (isset($data['images'])) {
-            $images;
+            $images = null;
             $id = uniqid();
             foreach ($data['images'] as $image) {
                 $src = Helper::image($image);
@@ -89,7 +89,6 @@ class PageController extends Controller
 
             $data['images'] = array_merge($page->images ?? [], $images);
         }
-
 
         $page->fill($data)->save();
 
@@ -129,7 +128,7 @@ class PageController extends Controller
     /**
      * @param $type
      * @param Post $page
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($type, Post $page)
     {

@@ -28,11 +28,4 @@ class PageFields extends PageFieldMaster
                 ->type('file'),
         ]);
     }
-
-    public function news()
-    {
-        return Page::make('Haberler ve Duyurular', [
-            Input::make('Açıklama', 'description')
-        ]);
-    }
 }
