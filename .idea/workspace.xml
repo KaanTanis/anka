@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e61d6475-1c88-4d02-aba7-7e02912f39ed" name="Default Changelist" comment="Update">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/SliderRequest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Slider.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_06_08_171518_create_posts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_06_08_171518_create_posts_table.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,6 +154,7 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
+    <option name="compactDirectories" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
@@ -216,7 +214,8 @@
       <workItem from="1625559006375" duration="117000" />
       <workItem from="1626176463572" duration="2053000" />
       <workItem from="1626329008620" duration="2134000" />
-      <workItem from="1627558970944" duration="722000" />
+      <workItem from="1627558970944" duration="991000" />
+      <workItem from="1627565840265" duration="686000" />
     </task>
     <task id="LOCAL-00001" summary="Update">
       <created>1624628579530</created>
@@ -239,7 +238,14 @@
       <option name="project" value="LOCAL" />
       <updated>1625492014943</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Update">
+      <created>1627565336531</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1627565336531</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
