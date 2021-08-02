@@ -62,8 +62,19 @@ class PageController extends Controller
 
         if (isset($fieldFiles['fields'])) {
             foreach ($fieldFiles['fields'] as $key => $field) {
-                $src = Helper::image($field);
-                $data['fields'][$key] = $src;
+                if (is_array($data['fields'][$key])) {
+                    $bulk = null;
+                    $id = uniqid();
+                    foreach ($data['fields'][$key] as $arrayField) {
+                        $src = Helper::image($arrayField);
+                        $bulk[] = ['id' => $id++, 'src' => $src];
+                    }
+
+                    $data['fields'][$key] = $bulk;
+                } else {
+                    $src = Helper::image($field);
+                    $data['fields'][$key] = $src;
+                }
             }
         }
 
@@ -78,7 +89,7 @@ class PageController extends Controller
         $data['cover'] = $cover ?? $page->cover;
         $data['banner'] = $banner ?? $page->banner;
 
-        if (isset($data['images'])) {
+        /*if (isset($data['images'])) {
             $images = null;
             $id = uniqid();
             foreach ($data['images'] as $image) {
@@ -88,7 +99,7 @@ class PageController extends Controller
             }
 
             $data['images'] = array_merge($page->images ?? [], $images);
-        }
+        }*/
 
         $page->fill($data)->save();
 
@@ -106,6 +117,7 @@ class PageController extends Controller
      */
     public function destroyImage($type, Post $page, $imageId)
     {
+        // todo: update array fields
         $data = $page->images;
 
         foreach ($data as $key => $value) {
@@ -133,7 +145,7 @@ class PageController extends Controller
     public function destroy($type, Post $page)
     {
         $page->delete();
-        // todo: destroy images
+        // todo: destroy files
 
         return response()->json([
             'status' => 'success',

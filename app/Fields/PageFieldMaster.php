@@ -21,7 +21,7 @@ class PageFieldMaster
     public function __construct()
     {
         $this->defaultFields = [
-            Input::make('Başlık', 'title'),
+            Input::make('Başlık', 'title', false),
         ];
     }
 
@@ -45,7 +45,6 @@ class PageFieldMaster
                 'page_name' => $method['page_name'],
                 'method_name' => $pageType,
                 'icon' => $method['icon'],
-                // For other settings or details (v-Alpha)
             ]]
         );
     }

@@ -13,13 +13,15 @@ class Fields
     /**
      * @param null $label
      * @param null $name
+     * @param bool $fieldsTable
      * @return Fields
      */
-    public static function make($label = null, $name = null): Fields
+    public static function make($label = null, $name = null, bool $fieldsTable = true): Fields
     {
         return (new static)
             ->label($label)
-            ->name($name);
+            ->name($name)
+            ->fieldsTable($fieldsTable);
     }
 
     /**
@@ -130,9 +132,9 @@ class Fields
     /**
      * @return $this
      */
-    public function fieldsTable(): Fields
+    public function fieldsTable($status): Fields
     {
-        $this->fieldsTable = true;
+        $this->fieldsTable = $status;
         return $this;
     }
 

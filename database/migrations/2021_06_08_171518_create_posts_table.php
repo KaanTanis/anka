@@ -17,8 +17,6 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('type')->index();
-            $table->json('options')->nullable();
-            $table->json('images')->nullable();
             $table->json('fields')->nullable();
             $table->integer('order')->index()->default(0);
             $table->timestamps();

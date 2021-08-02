@@ -11,15 +11,7 @@ class Post extends Model
 
     protected $fillable = [
         'title',
-        'description',
-        'content',
-        'seo_title',
-        'seo_description',
         'type',
-        'cover',
-        'banner',
-        'options',
-        'images',
         'fields',
         'order'
     ];

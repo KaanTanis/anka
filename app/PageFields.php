@@ -17,15 +17,18 @@ class PageFields extends PageFieldMaster
     /**
      * @return array
      */
-    public function gallery(): array
+    public function projects(): array
     {
-        return Page::make('Galeri', [
-            Input::make('Görseller', 'images[]')
+        return Page::make('Projeler', [
+            Input::make('Görseller', 'images')
                 ->multiple()
                 ->type('file'),
 
             Input::make('Kapak', 'cover')
                 ->type('file'),
+
+            Input::make('Proje başlama tarihi', 'start_date'),
+            Input::make('Proje tahmini bitiş', 'end_date'),
         ]);
     }
 }

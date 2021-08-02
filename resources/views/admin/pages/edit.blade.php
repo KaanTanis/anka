@@ -70,8 +70,26 @@
                                                         type="button" class="btn btn-danger fa fa-trash text-white p-2"></button>
                                                 @endif
                                             </label>
-                                            <input id="{{ $name }}" name="{{ $name }}" class="form-control"
-                                                   type="{{ $type }}" value="{{ $value }}" {{ $multiple }} {{ $required }}>
+                                            <input id="{{ $name }}" name="{{ $name }}{{ $multiple != null ? '[]' : null }}" class="form-control"
+                                                   type="{{ $type }}" value="@if(! is_array($value)) {{ $value }} @endif" {{ $multiple }} {{ $required }}>
+                                            @if(is_array($value))
+                                                <h3>{{ __('Yüklü Görseller') }}</h3>
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        @foreach($value as $image)
+                                                            <div id="image_id_{{ $image['id'] }}" class="col-md-2 col-xs-4">
+                                                                <i onclick="imgDestroyBtn('{{ route('admin.pages.destroyImage', [
+                                                    'type' => request()->type,
+                                                    'page' => $page->id,
+                                                    'imageId' => $image['id']
+                                                    ]) }}', '{{ $image['id'] }}')" class="fa fa-trash imgDestroyBtn"></i>
+                                                                <img style="width: 100%; max-height: 100px; object-fit: cover" src="{{ Helper::getImage($image['src']) }}" alt="">
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                            @endif
+
                                         </div>
                                     </div>
                                     @break
@@ -88,24 +106,6 @@
                                 @endswitch
                             @endforeach
                         </div>
-
-                        @if($page->images)
-                            <h3>{{ __('Yüklü Görseller') }}</h3>
-                            <div class="col-md-12">
-                                <div class="row">
-                                    @foreach($page->images as $image)
-                                        <div id="image_id_{{ $image['id'] }}" class="col-md-2 col-xs-4">
-                                            <i onclick="imgDestroyBtn('{{ route('admin.pages.destroyImage', [
-                                                    'type' => request()->type,
-                                                    'page' => $page->id,
-                                                    'imageId' => $image['id']
-                                                    ]) }}', '{{ $image['id'] }}')" class="fa fa-trash imgDestroyBtn"></i>
-                                            <img style="width: 100%; max-height: 100px; object-fit: cover" src="{{ Helper::getImage($image['src']) }}" alt="">
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        @endif
 
                         <div class="m-t-20 text-center">
                             <button type="submit" class="btn btn-primary submit-btn">{{ __('Kaydet') }}</button>

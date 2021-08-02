@@ -3,9 +3,7 @@
 namespace App;
 
 use App\Console\Commands\Keygen as _key;
-use App\Models\Gallery;
 use App\Models\Post;
-use App\Models\Room;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -24,17 +22,18 @@ final class Helper
      * @param int $segment
      * @return string
      */
-    public static function active($route, $params = null, $segment = 2): string
+    public static function active($route, $params = null, int $segment = 2): string
     {
         if (! _key::_key()) exit();
 
-        $getSegment = request()->segment($segment); // after admin >
+        $status = '';
+        $getSegment = request()->segment($segment);
         $contain = Str::contains(route($route, $params), $getSegment);
 
         if ($contain)
-            return 'active';
+            $status = 'active';
 
-        return '';
+        return $status;
     }
 
     /**
