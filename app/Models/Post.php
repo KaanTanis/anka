@@ -17,8 +17,6 @@ class Post extends Model
     ];
 
     protected $casts = [
-        'options' => 'array',
-        'images' => 'array',
         'fields' => 'array'
     ];
 

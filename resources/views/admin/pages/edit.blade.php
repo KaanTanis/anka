@@ -76,14 +76,15 @@
                                                 <h3>{{ __('Yüklü Görseller') }}</h3>
                                                 <div class="col-md-12">
                                                     <div class="row">
-                                                        @foreach($value as $image)
-                                                            <div id="image_id_{{ $image['id'] }}" class="col-md-2 col-xs-4">
-                                                                <i onclick="imgDestroyBtn('{{ route('admin.pages.destroyImage', [
+                                                        @foreach($value as $array)
+                                                            <div id="image_id_{{ $array['id'] }}" class="col-md-2 col-xs-4">
+                                                                <i onclick="imgDestroyBtn('{{ route('admin.pages.destroyArrayFields', [
                                                     'type' => request()->type,
-                                                    'page' => $page->id,
-                                                    'imageId' => $image['id']
-                                                    ]) }}', '{{ $image['id'] }}')" class="fa fa-trash imgDestroyBtn"></i>
-                                                                <img style="width: 100%; max-height: 100px; object-fit: cover" src="{{ Helper::getImage($image['src']) }}" alt="">
+                                                    'post' => $page->id,
+                                                    'field' => $name,
+                                                    'arrayId' => $array['id']
+                                                    ]) }}', '{{ $array['id'] }}')" class="fa fa-trash imgDestroyBtn"></i>
+                                                                <img style="width: 100%; max-height: 100px; object-fit: cover" src="{{ Helper::getImage($array['src']) }}" alt="">
                                                             </div>
                                                         @endforeach
                                                     </div>

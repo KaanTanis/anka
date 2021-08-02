@@ -137,6 +137,11 @@ class PageController extends Controller
         ]);
     }
 
+    public function destroyArrayField($type, Post $post, $field, $arrayId)
+    {
+        dd($field);
+    }
+
     /**
      * @param $type
      * @param Post $page

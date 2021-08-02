@@ -37,7 +37,8 @@ Route::middleware('auth')->group(function () {
             ->name('admin.pages.destroyImage');
         Route::post('/{type}/destroy-single-image/{page?}/', [PageController::class, 'destroySingleImage'])
             ->name('admin.pages.destroySingleImage');
-        Route::post('{type}/destroy-array/{page}/{arrayId}', [PageController::class, 'destroyArrayField'])
+
+        Route::post('{type}/destroy-array/{post}/{field}/{arrayId}', [PageController::class, 'destroyArrayField'])
             ->name('admin.pages.destroyArrayFields');
     });
 });
