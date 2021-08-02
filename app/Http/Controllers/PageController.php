@@ -6,6 +6,7 @@ use App\Helper;
 use App\Http\Requests\PageRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 /**
  * Class PageController
@@ -60,48 +61,37 @@ class PageController extends Controller
         $data = $pageRequest->all();
         $fieldFiles = $pageRequest->file();
 
-        if (isset($fieldFiles['fields'])) {
-            foreach ($fieldFiles['fields'] as $key => $field) {
-                if (is_array($data['fields'][$key])) {
-                    $bulk = null;
-                    $id = uniqid();
-                    foreach ($data['fields'][$key] as $arrayField) {
-                        $src = Helper::image($arrayField);
-                        $bulk[] = ['id' => $id++, 'src' => $src];
+        if (isset($fieldFiles['fields'])) { // Fields tablosuna gelen dosya varsa
+            foreach ($fieldFiles['fields'] as $key => $field) { // dosyaları ayıkla
+                if (is_array($data['fields'][$key])) { // dosya array ise
+                    $bulk = $page->fields($key); // eski verileri aklında tut
+                    $id = uniqid(); // rastgele id ver (silerken kolaylık)
+                    foreach ($data['fields'][$key] as $arrayField) { // dosyaları tek tek al
+                        $src = Helper::image($arrayField); // dosya sistemine ekle ve yolunu al
+                        $bulk[] = ['id' => $id++, 'src' => $src]; // eski verilerle birleştir
                     }
 
-                    $data['fields'][$key] = $bulk;
-                } else {
-                    $src = Helper::image($field);
-                    $data['fields'][$key] = $src;
+                    $data['fields'][$key] = $bulk; // data[fields] içinde yeni verileri güncelle
+                } else { // gelen dosya tek ise
+                    $src = Helper::image($field); // dosya sistemine ekle ve yolunu al
+                    $data['fields'][$key] = $src; // fields tablosuna input adıyla ekle
                 }
             }
         }
 
         $data['type'] = $type;
 
-        if (isset($data['cover']))
-            $cover = Helper::image($data['cover']);
+        $oldFields = $page->fields; // eski verileri aklında tut
+        $newDatas = $data['fields']; // yeni verileri yeni değişkene al
 
-        if (isset($data['banner']))
-            $banner = Helper::image($data['banner']);
+        foreach ($newDatas as $key => $value) { // yeni verileri al
+            unset($oldFields[$key]); // Eski ve yeni verileri karşılaştır. Çakışanları sil
+        }
 
-        $data['cover'] = $cover ?? $page->cover;
-        $data['banner'] = $banner ?? $page->banner;
+        $merged = array_merge($oldFields, $newDatas); // Eski verilerden çakışmayanlarla, yeni çakışan verileri birleştir
+        $data['fields'] = $merged; // fields tablosunu bu birleşen değere göre değiştir
 
-        /*if (isset($data['images'])) {
-            $images = null;
-            $id = uniqid();
-            foreach ($data['images'] as $image) {
-                $src = Helper::image($image);
-
-                $images[] = ['id' => $id++, 'src' => $src];
-            }
-
-            $data['images'] = array_merge($page->images ?? [], $images);
-        }*/
-
-        $page->fill($data)->save();
+        $page->fill($data)->save(); // veritabanına kaydet
 
         return back()->with([
             'status' => 'success',
@@ -109,37 +99,27 @@ class PageController extends Controller
         ]);
     }
 
-    /**
-     * @param $type
-     * @param Post $page
-     * @param $imageId
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function destroyImage($type, Post $page, $imageId)
+    public function destroyArrayField($type, Post $post, $field, $arrayId)
     {
-        // todo: update array fields
-        $data = $page->images;
+        $data = $post->fields;
 
-        foreach ($data as $key => $value) {
-            if ($value['id'] == $imageId)
-                $index = $key;
+        // gelen veri array olduğu için field[key] şeklinde geliyor. Keyi yakala
+        $fieldName = Str::between($field, '[', ']');
+
+        // yakalanan key'e göre array fieldini getir.
+        foreach ($data[$fieldName] as $key => $value) {
+            if ($value['id'] == $arrayId) // eğer gönderilen id, veritabanındakiyle eşleşirse
+                $index = $key; // index numarasını al
         }
+        unset($data[$fieldName][$index]); // yakalanan index numarasını field arrayından sil
+        // todo: ya eğer index yoksa?
 
-        unset($data[$index]);
-        $data = array_values($data);
-
-        $page->update(['images' => $data]);
-        // todo: if success, delete image file
+        $post->update(['fields' => $data]);
 
         return response()->json([
             'status' => 'success',
             'message' => __('Görsel silindi')
         ]);
-    }
-
-    public function destroyArrayField($type, Post $post, $field, $arrayId)
-    {
-        dd($field);
     }
 
     /**
