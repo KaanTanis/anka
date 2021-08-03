@@ -50,11 +50,12 @@
                                     $multiple = $field->multiple;
                                     $required = $field->required;
                                     $tinymce = $field->tinymce;
+                                    $col = $field->col;
                                     $value = ($field->fieldsTable ? ($page->fields[$field->name] ?? null) : $page[$field->name]) ?? null
                                 @endphp
                                 @switch($field->component)
                                     @case('input-field')
-                                    <div class="col-md-12">
+                                    <div class="col-md-{{ $col }}">
                                         <div class="form-group">
                                             <label for="{{ $name }}">
                                                 {{ $label }}
@@ -64,16 +65,16 @@
                                                     <button
                                                         onclick="imgDestroyBtn('{{ route('admin.pages.destroySingleImage', [
                                                                 'type' => request()->type,
-                                                                'page' => $page->id,
-                                                                'table_name' => $name
+                                                                'post' => $page->id,
+                                                                'field_name' => $name
                                                                 ]) }}')"
                                                         type="button" class="btn btn-danger fa fa-trash text-white p-2"></button>
                                                 @endif
                                             </label>
                                             <input id="{{ $name }}" name="{{ $name }}{{ $multiple != null ? '[]' : null }}" class="form-control"
-                                                   type="{{ $type }}" value="@if(! is_array($value)) {{ $value }} @endif" {{ $multiple }} {{ $required }}>
+                                                   type="{{ $type }}" value="@if(! is_array($value)){{ $value }}@endif" {{ $multiple }} {{ $required }}>
                                             @if(is_array($value))
-                                                <h3>{{ __('Yüklü Görseller') }}</h3>
+                                                <h3 style="margin-top: 15px; position: relative; bottom: -20px">{{ __('Yüklü Görseller') }}</h3>
                                                 <div class="col-md-12">
                                                     <div class="row">
                                                         @foreach($value as $array)

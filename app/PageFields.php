@@ -14,21 +14,41 @@ use Illuminate\Support\Arr;
  */
 class PageFields extends PageFieldMaster
 {
+    public function slider()
+    {
+        return Page::make('Slider', [
+            Input::make('Görsel', 'cover')->type('file'),
+            Input::make('Buton Yazı', 'button_text'),
+            Input::make('Buton Link', 'button_action'),
+        ]);
+    }
+
     /**
      * @return array
      */
     public function projects(): array
     {
         return Page::make('Projeler', [
-            Input::make('Görseller', 'images')
-                ->multiple()
-                ->type('file'),
-
             Input::make('Kapak', 'cover')
                 ->type('file'),
 
-            Input::make('Proje başlama tarihi', 'start_date'),
-            Input::make('Proje tahmini bitiş', 'end_date'),
+            Input::make('Proje başlama tarihi', 'start_date')->col(3),
+            Input::make('Proje tahmini bitiş', 'end_date')->col(3),
+            Input::make('Daire sayısı', 'apartments')->col(3),
+            Input::make('Blok Sayısı', 'blog')->col(3),
+            Input::make('Kat', 'floor')->col(3),
+            Input::make('Aprtman Tipi', 'apartment_type')->col(3),
+            Input::make('Aprtman m2', 'apartment_square')->col(3),
+            Input::make('Ticari Alan', 'trade')->col(3),
+            Input::make('Arsa Alanı m2', 'landsquare')->col(3),
+            Input::make('Adres', 'address')->col(9),
+            Input::make('Proje Logosu', 'project_logo')->type('file')->col(6),
+            Input::make('Logo Boyutu', 'logo_size')->col(6),
+            Input::make('Proje Tipi', 'project_type'),
+
+            Input::make('Görseller', 'images')
+                ->multiple()
+                ->type('file'),
         ]);
     }
 }

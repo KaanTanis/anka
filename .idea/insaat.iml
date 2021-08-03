@@ -121,6 +121,11 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/renatomarinho/laravel-page-speed" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/graham-campbell/result-type" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/public/front" />
+      <excludeFolder url="file://$MODULE_DIR$/public/uploads" />
+      <excludeFolder url="file://$MODULE_DIR$/storage/framework/cache/data/44" />
+      <excludeFolder url="file://$MODULE_DIR$/storage/framework/cache/data/c2" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -12,7 +12,6 @@ class UserPageController extends Controller
 {
     public function home()
     {
-//        return view('front.home');
-        return 'home';
+        return view('front.home');
     }
 }

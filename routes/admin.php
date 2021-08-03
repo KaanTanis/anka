@@ -17,6 +17,10 @@ Route::match(['GET', 'POST'], '/login', [LoginController::class, 'login'])
 Route::post('/logout', [LoginController::class, 'logout'])
     ->name('logout');
 
+Route::get('test', function () {
+    return \App\Models\Post::find(1);
+});
+
 Route::middleware('auth')->group(function () {
     Route::view('/', 'admin.home')
         ->name('admin.home');
@@ -35,7 +39,7 @@ Route::middleware('auth')->group(function () {
             ->name('admin.pages.destroy');
         Route::post('/{type}/destroy-image/{page?}/{imageId?}', [PageController::class, 'destroyImage'])
             ->name('admin.pages.destroyImage');
-        Route::post('/{type}/destroy-single-image/{page?}/', [PageController::class, 'destroySingleImage'])
+        Route::post('/{type}/destroy-single-image/{post?}/{field_name?}', [PageController::class, 'destroySingleImage'])
             ->name('admin.pages.destroySingleImage');
 
         Route::post('{type}/destroy-array/{post}/{field}/{arrayId}', [PageController::class, 'destroyArrayField'])
