@@ -44,7 +44,8 @@ final class Helper
         '300',
         '600',
         '1200',
-        '2000'
+        '2000',
+        'original'
     ];
 
     /**
@@ -90,6 +91,7 @@ final class Helper
 
         $path_size_list = self::$sizes;
 
+
         foreach ($path_size_list as $size) {
             $intervention = Image::make($image);
             $originalSize = $intervention->width();
@@ -101,10 +103,23 @@ final class Helper
             if ($originalSize <= $size)
                 $size = $originalSize;
 
+            if ($size == 'original') {
+                $size = $originalSize;
+                $quality = 100;
+            }
+
             $intervention->resize($size, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save($path . '/' . $imageName . '.' . $extension, $quality, $extension);
         }
+
+        // for original image
+        /*$path = public_path("uploads/images/woriginal/" . $date);
+        if (! File::exists($path))
+            File::makeDirectory($path, 755, true, true);
+
+        $intervention->save($path . '/' . $imageName . '.' . $extension);*/
+
 
         return $date . '/' . $imageName . '.' . $extension;
     }

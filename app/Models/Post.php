@@ -20,7 +20,7 @@ class Post extends Model
         'fields' => 'array'
     ];
 
-    public function fields($field)
+    public function field($field)
     {
         return $this->fields[$field] ?? null;
     }
