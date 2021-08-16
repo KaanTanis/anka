@@ -74,7 +74,7 @@
                                             <input id="{{ $name }}" name="{{ $name }}{{ $multiple != null ? '[]' : null }}" class="form-control"
                                                    type="{{ $type }}" value="@if(! is_array($value)){{ $value }}@endif" {{ $multiple }} {{ $required }}>
                                             @if(is_array($value))
-                                                <h3 style="margin-top: 15px; position: relative; bottom: -20px">{{ __('Yüklü Görseller') }}</h3>
+                                                <h3 style="margin-top: 15px; position: relative; bottom: -20px">{{ __('Yüklü Ekler') }}</h3>
                                                 <div class="col-md-12">
                                                     <div class="row">
                                                         @foreach($value as $array)
@@ -100,7 +100,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="{{ $name }}">{{ $label }}</label>
-                                            <textarea class="form-control {{ $tinymce ?: 'tinymce' }}" name="{{ $name }}" id="{{ $name }}"
+                                            <textarea class="form-control {{ $tinymce == true ? 'tinymce' : null }}" name="{{ $name }}" id="{{ $name }}"
                                                       rows="3" {{ $required }}>{{ $value }}</textarea>
                                         </div>
                                     </div>

@@ -23,6 +23,15 @@ class PageFields extends PageFieldMaster
         ]);
     }
 
+    public function pages()
+    {
+        return Page::make('Sayfalar', [
+            Textarea::make('İçerik', 'content')->tinymce(),
+            Textarea::make('Açıklama', 'description'),
+            Input::make('Kapak', 'cover')->type('file'),
+        ]);
+    }
+
     /**
      * @return array
      */
@@ -32,10 +41,15 @@ class PageFields extends PageFieldMaster
             Input::make('Kapak', 'cover')
                 ->type('file'),
 
+            Input::make('Banner', 'banner')
+                ->type('file'),
+
+            Textarea::make('Açıklama', 'description'),
+
             Input::make('Proje başlama tarihi', 'start_date')->col(3),
             Input::make('Proje tahmini bitiş', 'end_date')->col(3),
             Input::make('Daire sayısı', 'apartments')->col(3),
-            Input::make('Blok Sayısı', 'blog')->col(3),
+            Input::make('Blok Sayısı', 'blok')->col(3),
             Input::make('Kat', 'floor')->col(3),
             Input::make('Aprtman Tipi', 'apartment_type')->col(3),
             Input::make('Aprtman m2', 'apartment_square')->col(3),

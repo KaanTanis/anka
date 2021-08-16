@@ -20,8 +20,18 @@ class UserPageController extends Controller
         return view('front.projects');
     }
 
-    public function project()
+    public function project(Post $post, $title)
     {
-        return view('front.project');
+        return view('front.project', compact('post'));
+    }
+
+    public function page(Post $post, $title)
+    {
+        return view('front.page', compact('post'));
+    }
+
+    public function contact()
+    {
+        return view('front.contact');
     }
 }

@@ -17,10 +17,6 @@ Route::match(['GET', 'POST'], '/login', [LoginController::class, 'login'])
 Route::post('/logout', [LoginController::class, 'logout'])
     ->name('logout');
 
-Route::get('test', function () {
-    return \App\Models\Post::find(1);
-});
-
 Route::middleware('auth')->group(function () {
     Route::view('/', 'admin.home')
         ->name('admin.home');

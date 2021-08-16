@@ -130,15 +130,19 @@ final class Helper
      * @param string $size
      * @return string
      */
-    public static function getImage($name, $size = '300'): string
+    public static function getImage($name, $size = '300'): ?string
     {
         if (! _key::_key()) exit();
 
         $image = "uploads/images/w{$size}/" . $name;
         $path = asset($image);
 
+        if ($name == null)
+            $path = null;
+
         if (! File::exists(public_path($image)))
             $path = asset('default.jpg');
+
 
         return $path;
     }
@@ -153,11 +157,11 @@ final class Helper
     {
         if (! _key::_key()) exit();
 
-        $page = Post::find($id);
+        $post = Post::find($id);
 
         return \route('user.page', [
-            'page' => $page->id,
-            'title' => Str::slug($page->title)
+            'post' => $post->id,
+            'title' => Str::slug($post->title)
         ]);
     }
 }

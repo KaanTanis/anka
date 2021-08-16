@@ -30,7 +30,7 @@ class EmailRequest extends FormRequest
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
-            'checkbox' => 'required'
+            //'checkbox' => 'required'
         ];
     }
 

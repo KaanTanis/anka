@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helper;
 use App\Http\Requests\PageRequest;
+use App\Models\Log;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -64,7 +65,7 @@ class PageController extends Controller
         if (isset($fieldFiles['fields'])) { // Fields Files
             foreach ($fieldFiles['fields'] as $key => $field) {
                 if (is_array($data['fields'][$key])) {
-                    $bulk = $page->fields($key); // Old files infos
+                    $bulk = $page->field($key); // Old files infos
                     $id = uniqid();
                     foreach ($data['fields'][$key] as $arrayField) {
                         $src = Helper::image($arrayField);
@@ -185,6 +186,7 @@ class PageController extends Controller
         foreach ($request->all() as $item => $val) {
             Post::find($val)->update(['order' => $order++]);
         }
+
         return response()->json([
             'status' => 'success',
             'message' => 'Sıralama güncellendi'

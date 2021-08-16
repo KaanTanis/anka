@@ -22,6 +22,16 @@ class EmailController extends Controller
     {
         $request->merge(['subject' => 'Bilgi almak istiyorum']);
 
+        \App\Models\Log::create([
+            'title' => 'İletişim Formu Gönderildi',
+            'log_type' => 'contact_form',
+            'log_details' => json_encode([
+                'ip' => \request()->ip(),
+                'user_agent' => \request()->userAgent(),
+                'request' => $request->all()
+            ])
+        ]);
+
         Mail::send(new ContactForm($request->all()));
 
         return response()->json([
@@ -29,4 +39,5 @@ class EmailController extends Controller
             'message' => [__('Mesajınız başarıyla iletişilmiştir.')]
         ]);
     }
+
 }

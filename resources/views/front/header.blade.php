@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="tr">
 
-<!-- Mirrored from paul-themes.com/html/arquito/demo/home-3d-panorama-dark.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 03 Aug 2021 06:55:50 GMT -->
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Arquito - 3D Architecture &amp; Interior HTML Template">
     <meta name="author" content="Paul, Logan Cee, Mikhail Ojereliev">
-    <title>AYDINOĞLU</title>
+    <title>@yield('title', 'Adanorm')</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Teko:300,400" rel="stylesheet">
 
     <link href="/front/assets/css/icofont.min.css" rel="stylesheet">
@@ -35,6 +34,9 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="msapplication-config" content="favicons/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
+
+    <script src="/js/app.js"></script>
+    @stack('header')
 </head>
 <body class="page">
 <div style="display: none">
@@ -46,9 +48,11 @@
 </div>
 <div class="page__inner animsition">
     <header class="header header_white header_fixed ">
-        <div class="header__container">
+        <div class="header__container" style="padding-top: 10px !important;">
             <div class="header__wrapper container-fluid">
-                <div class="header__inner"><a href="http://paul-themes.com/" class="logo header__logo">Arquito</a>
+                <div class="header__inner"><a href="/" class="logo header__logo">
+                        <img src="/a-logo.png" alt="" style="height: 60px">
+                    </a>
                     <button type="button" class="header__menu-button"><span class="header__menu-button-inner"></span>
                     </button>
                 </div>
@@ -62,22 +66,22 @@
                             </div>
                         </li>
                         <li class="top-menu__menu-item">
-                            <div><a href="/"
+                            <div><a href="{{ \App\Helper::pageSlug(4) }}"
                                     class="dropdown__trigger top-menu__menu-link">Hakkımızda</a>
                             </div>
                         </li>
                         <li class="top-menu__menu-item">
-                            <div><a href="/"
+                            <div><a href="{{ route('user.projects') }}"
                                     class="dropdown__trigger top-menu__menu-link">Projeler</a>
                             </div>
                         </li>
                         <li class="top-menu__menu-item">
-                            <div><a href="/"
+                            <div><a href="{{ route('user.contact') }}"
                                     class="dropdown__trigger top-menu__menu-link">İletişim</a>
                             </div>
                         </li>
                     </ul>
-                    <div class="header-full-page__contacts"><span>İletişim:</span> <a href="tel:+9656851379">+90 500 000 00 00</a></div>
+                    <div class="header-full-page__contacts"><span>İletişim:</span> <a href="tel:+90 322 233 0933">+90 322 233 0933</a></div>
                 </div>
             </div>
         </div>
@@ -98,17 +102,17 @@
                     </div>
 
                     <div class="menu-panel__menu-item">
-                        <a href="/" data-toggle="collapse"
+                        <a href="{{ \App\Helper::pageSlug(4) }}" data-toggle="collapse"
                            class="menu-panel__menu-link menu-panel__menu-link menu-panel__menu-link_active">Hakkımızda</a>
                     </div>
 
                     <div class="menu-panel__menu-item">
-                        <a href="/" data-toggle="collapse"
+                        <a href="{{ route('user.projects') }}" data-toggle="collapse"
                            class="menu-panel__menu-link menu-panel__menu-link menu-panel__menu-link_active">Projeler</a>
                     </div>
 
                     <div class="menu-panel__menu-item">
-                        <a href="/" data-toggle="collapse"
+                        <a href="{{ route('user.contact') }}" data-toggle="collapse"
                            class="menu-panel__menu-link menu-panel__menu-link menu-panel__menu-link_active">İletişim</a>
                     </div>
                 </div>
@@ -121,8 +125,8 @@
                             <div class="visually-hidden">google plus</div>
                         </a></div>
                     <div class="menu-panel__bottom">
-                        <div class="menu-panel__copyright">© 2019 <strong>ARQUITO.</strong> All Rights Reserved.</div>
-                        <div class="menu-panel__author">Design by <a href="#">Logan Cee</a></div>
+                        <div class="menu-panel__copyright">© {{ date('Y') }} <strong>{{ config('app.name') }}.</strong> All Rights Reserved.</div>
+                        <div class="menu-panel__author">Designed by <a href="//bilgibahcesi.com">bilgibahcesi.com</a></div>
                     </div>
                 </div>
             </div>
