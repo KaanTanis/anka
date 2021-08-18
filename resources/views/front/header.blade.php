@@ -12,7 +12,7 @@
     <link href="/front/assets/css/icofont.min.css" rel="stylesheet">
     <link href="/front/assets/css/linearicons.min.css" rel="stylesheet">
     <link href="/front/assets/css/magnific-popup.min.css" rel="stylesheet">
-    <link href="/front/assets/css/animsition.min.css" rel="stylesheet">
+{{--    <link href="/front/assets/css/animsition.min.css" rel="stylesheet">--}}
     <link href="/front/assets/css/swiper.min.css" rel="stylesheet">
     <link href="/front/assets/css/bootstrap.min.css" rel="stylesheet">
 
@@ -37,6 +37,7 @@
 
     <script src="/js/app.js"></script>
     @stack('header')
+
 </head>
 <body class="page">
 <div style="display: none">

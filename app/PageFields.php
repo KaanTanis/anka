@@ -18,6 +18,7 @@ class PageFields extends PageFieldMaster
     {
         return Page::make('Slider', [
             Input::make('Görsel', 'cover')->type('file'),
+            Textarea::make('Açıklama', 'description')->tinymce(),
             Input::make('Buton Yazı', 'button_text'),
             Input::make('Buton Link', 'button_action'),
         ]);

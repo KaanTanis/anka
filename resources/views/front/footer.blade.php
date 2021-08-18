@@ -24,7 +24,7 @@
                 <div class="footer-interior__group-title">Mail Aboneliği</div>
                 <p>Projeler hakkında bilgilendirme mailleri alın!</p>
                 <form action="#" class="footer-interior__form" id="subscribeForm">
-                    <input placeholder="Mail adresiniz" name="email" class="footer-interior__input" type="text"/>
+                    <input placeholder="Mail adresiniz" name="email" class="footer-interior__input" type="email" required/>
                     <button class="footer-interior__submit">Abone Ol
                         <span class="footer-interior__submit-icon icon-chevron-right"></span>
                     </button>
@@ -60,7 +60,7 @@
                         Designed by <a href="//bilgibahcesi.com" target="_blank">bilgibahcesi.com</a></div>
                 </div>
                 <div class="footer-interior__column col-12 col-sm-6 col-lg-3 offset-lg-3">
-                    <div class="footer-interior__socials"><a href="#"
+                    {{--<div class="footer-interior__socials"><a href="#"
                                                              class="footer-interior__social icofont-twitter">
                             <div class="visually-hidden">twitter</div>
                         </a><a href="#" class="footer-interior__social icofont-facebook">
@@ -71,7 +71,7 @@
                             <div class="visually-hidden">google plus</div>
                         </a><a href="#" class="footer-interior__social icofont-linkedin">
                             <div class="visually-hidden">linkedin</div>
-                        </a></div>
+                        </a></div>--}}
                 </div>
             </div>
         </div>
@@ -86,7 +86,7 @@
 <script src="/front/assets/js/jQuerySimpleCounter.min.js"></script>
 <script src="/front/assets/js/jquery.magnific-popup.min.js"></script>
 <script src="/front/assets/js/isotope.pkgd.min.js"></script>
-<script src="/front/assets/js/animsition.min.js"></script>
+{{--<script src="/front/assets/js/animsition.min.js"></script>--}}
 <script src="/front/assets/js/bootstrap.bundle.min.js"></script>
 <script src="/front/assets/js/rellax.min.js"></script>
 <script src="/front/assets/js/swiper.min.js"></script>
@@ -115,6 +115,10 @@
 
 <script src="/front/assets/js/theme.js"></script>
 @stack('footer')
+
+<script src="/front/fslightbox.js"></script>
+
+
 <!--
 KT
 -->
