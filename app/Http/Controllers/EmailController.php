@@ -20,7 +20,8 @@ class EmailController extends Controller
      */
     public function contactForm(EmailRequest $request): \Illuminate\Http\JsonResponse
     {
-        $request->merge(['subject' => 'Bilgi almak istiyorum']);
+        if (! $request->subject)
+            $request->merge(['subject' => 'Bilgi almak istiyorum']);
 
         \App\Models\Log::create([
             'title' => 'İletişim Formu Gönderildi',

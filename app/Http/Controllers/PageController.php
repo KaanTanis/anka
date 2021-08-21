@@ -130,7 +130,7 @@ class PageController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => __('Görsel silindi')
+            'message' => __('Ek silindi')
         ]);
     }
 

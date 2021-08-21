@@ -8,7 +8,7 @@
                     </li>
                     <li class="footer-interior__list-item"><a href="{{ route('user.contact') }}"
                                                               class="footer-interior__list-link">İletişim</a></li>
-                    <li class="footer-interior__list-item"><a href="{{ \App\Helper::pageSlug(5) }}" class="footer-interior__list-link">Kişisel Verileri Aydınlatma Metni</a>
+                    <li class="footer-interior__list-item"><a href="{{ \App\Helper::pageSlug(5) }}" class="footer-interior__list-link">Kişisel Verilerin Korunması Kanunu</a>
                     </li>
                 </ul>
             </div>
@@ -29,27 +29,6 @@
                         <span class="footer-interior__submit-icon icon-chevron-right"></span>
                     </button>
                 </form>
-
-                @push('footer')
-                    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-                    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-
-                    <script>
-                        $(function () {
-                            $('#subscribeForm').submit(function (e) {
-                                e.preventDefault()
-                                axios.post('{{ route('subscribeForm') }}', $(this).serialize()).then((res) => {
-                                    $.each(res.data.message, function (index, value) {
-                                        toastr[res.data.status](value)
-                                    })
-                                    if (res.data.status === 'success') {
-                                        $('#subscribeForm')[0].reset()
-                                    }
-                                })
-                            })
-                        })
-                    </script>
-                @endpush
             </div>
         </div>
         <div class="footer-interior__bottom">
@@ -115,6 +94,11 @@
 
 <script src="/front/assets/js/theme.js"></script>
 @stack('footer')
+
+<script src="/assets/toastr/toastr.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/assets/toastr/toastr.min.css">
+
+<script src="/assets/front/forms.js"></script>
 
 <script src="/front/fslightbox.js"></script>
 

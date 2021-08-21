@@ -10,4 +10,14 @@ class Option extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function options($key)
+    {
+        return $this->where('key', $key)->get();
+    }
+
+    public function option($key)
+    {
+        return $this->where('key', $key)->first()->value;
+    }
 }

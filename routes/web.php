@@ -15,12 +15,14 @@ Route::get('/s/{post}/{title?}', [UserPageController::class, 'page'])->name('use
 Route::get('/iletisim', [UserPageController::class, 'contact'])->name('user.contact');
 
 Route::post('/send-contact-form', [EmailController::class, 'contactForm'])
-    ->middleware(['throttle:sendmail'])
-    ->name('sendContactForm');
+    ->middleware(['throttle:sendmail']);
 
-Route::post('/abone-ol', [SubscribeController::class, 'subscribeForm'])
-    ->middleware(['throttle:sendmail'])
-    ->name('subscribeForm');
+Route::post('/subscribe', [SubscribeController::class, 'subscribeForm'])
+    ->middleware(['throttle:sendmail']);
+
+/*Route::get('/test', function () {
+   dd($options);
+});*/
 
 
 

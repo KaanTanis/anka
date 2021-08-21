@@ -21,6 +21,7 @@
                             <tr>
                                 <th style="width: 10%">{{ __('Sıra') }}</th>
                                 <th style="width: 90%">{{ __('Sayfa Adı') }}</th>
+                                <th class="text-center">{{ __('Dil') }}</th>
                                 <th class="text-right">{{ __('Eylem') }}</th>
                             </tr>
                             </thead>
@@ -29,6 +30,17 @@
                             <tr id="{{ $page->id }}">
                                 <td style="width: 10%" class="handle"><i class="fa fa-arrows-v"></i></td>
                                 <td style="width: 90%">{{ $page->title }}</td>
+
+                                <td class="text-center">
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                        @foreach($options->options('languages') as $language)
+                                            <a type="button" class="btn btn-outline-primary"
+                                               href="{{ route('admin.pages.edit', ['type' => request()->type, 'page' => $page->id, 'lang' => $language->value]) }}"
+                                            >{{ $language->value }}</a>
+                                        @endforeach
+                                    </div>
+                                </td>
+
                                 <td class="text-right">
                                     <a href="{{ route('admin.pages.edit', ['type' => request()->type, 'page' => $page->id]) }}" class="btn btn-primary">{{ __('Düzenle') }}</a>
                                 </td>
