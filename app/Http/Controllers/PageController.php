@@ -37,7 +37,7 @@ class PageController extends Controller
      */
     public function index($type)
     {
-        $pages = Post::where('type', $type)->orderBy('order')->get();
+        $pages = Post::whereNull('parent_id')->where('type', $type)->orderBy('order')->get();
         return view('admin.pages.index', compact('pages'));
     }
 
@@ -48,6 +48,24 @@ class PageController extends Controller
      */
     public function edit($type, Post $page)
     {
+        $lang = \request()->lang;
+        if ($lang) {
+            $langPage = $page->lang($lang);
+
+            if (is_null($langPage)) {
+                $original = $page->select('title', 'type', 'fields')->first()->toArray();
+                $copy = array_merge($original, ['lang' => $lang, 'parent_id' => $page->id]);
+
+                $page = Post::create($copy);
+            } else {
+                $page = $langPage;
+            }
+
+            return redirect()->route('admin.pages.edit', ['type' => request()->type, 'page' => $page->id]);
+        } else {
+            $page = $page;
+        }
+
         return view('admin.pages.edit', compact('page'));
     }
 

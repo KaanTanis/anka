@@ -13,7 +13,9 @@ class Post extends Model
         'title',
         'type',
         'fields',
-        'order'
+        'order',
+        'lang',
+        'parent_id'
     ];
 
     protected $casts = [
@@ -23,5 +25,10 @@ class Post extends Model
     public function field($field)
     {
         return $this->fields[$field] ?? null;
+    }
+
+    public function lang($lang)
+    {
+        return $this->where('lang', $lang)->where('parent_id', $this->id)->first();
     }
 }

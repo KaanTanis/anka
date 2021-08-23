@@ -1,12 +1,7 @@
 <?php
 
-use App\Http\Controllers\FeatureController;
-use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\RoomController;
-use App\Http\Controllers\RoomTypeController;
-use App\Http\Controllers\SliderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -14,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 Route::match(['GET', 'POST'], '/login', [LoginController::class, 'login'])
     ->middleware(['throttle:10:1'])
     ->name('login');
+
 Route::post('/logout', [LoginController::class, 'logout'])
     ->name('logout');
 

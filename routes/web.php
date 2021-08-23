@@ -20,9 +20,19 @@ Route::post('/send-contact-form', [EmailController::class, 'contactForm'])
 Route::post('/subscribe', [SubscribeController::class, 'subscribeForm'])
     ->middleware(['throttle:sendmail']);
 
-/*Route::get('/test', function () {
-   dd($options);
-});*/
+Route::get('/test', function () {
+   /*\App\Models\Option::create([
+       'key' => 'languages',
+       'value' => json_encode([
+           ['lang' => 'tr', 'flag' => 'tr'],
+           ['lang' => 'es', 'flag' => 'es']
+       ])
+   ]);*/
+
+    foreach (json_decode(\App\Models\Option::where('key', 'languages')->first()->value) as $item) {
+        dd($item->flag);
+    }
+});
 
 
 

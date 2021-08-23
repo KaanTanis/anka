@@ -19,6 +19,8 @@ class CreatePostsTable extends Migration
             $table->string('type')->index();
             $table->json('fields')->nullable();
             $table->integer('order')->index()->default(0);
+            $table->string('lang')->index()->nullable();
+            $table->integer('parent_id')->nullable()->index();
             $table->timestamps();
         });
     }

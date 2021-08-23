@@ -1,5 +1,7 @@
 @extends('admin.master')
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" integrity="sha512-Cv93isQdFwaKBV+Z4X8kaVBYWHST58Xb/jVOcV9aRsGSArZsgAnFIhMpDoMDcFNoUtday1hdjn0nGp3+KZyyFw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 @section('content')
     <div class="page-wrapper">
         <div class="content">
@@ -33,10 +35,10 @@
 
                                 <td class="text-center">
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                        @foreach($options->options('languages') as $language)
-                                            <a type="button" class="btn btn-outline-primary"
-                                               href="{{ route('admin.pages.edit', ['type' => request()->type, 'page' => $page->id, 'lang' => $language->value]) }}"
-                                            >{{ $language->value }}</a>
+                                        @foreach(\App\Helper::$languages as $language)
+                                            <a type="button" class="mr-2"
+                                               href="{{ route('admin.pages.edit', ['type' => request()->type, 'page' => $page->id, 'lang' => $language['lang']]) }}"
+                                            ><i class="flag-icon flag-icon-{{ $language['flag_code'] }} flag-icon-square"></i></a>
                                         @endforeach
                                     </div>
                                 </td>

@@ -13,6 +13,7 @@
                         <a href="{{ route('admin.pages.index', ['type' => $detail['method_name']]) }}"><i class="{{ $detail['icon'] }}"></i> <span>{{ $detail['page_name'] }}</span></a>
                     </li>
                 @endforeach
+                
             </ul>
         </div>
     </div>

@@ -48,6 +48,19 @@ final class Helper
         'original'
     ];
 
+    public static $languages = [
+        [
+            'lang_name' => 'English',
+            'lang' => 'en',
+            'flag_code' => 'gb'
+        ],
+        [
+            'lang_name' => 'Español',
+            'lang' => 'es',
+            'flag_code' => 'es'
+        ],
+    ];
+
     /**
      * @return mixed
      */
