@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eb8bdfff0a424fd0bb648207a785f6e0",
+    "content-hash": "8e01d1c18121e62451c6e97b33fc9a38",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6836,6 +6836,66 @@
                 }
             ],
             "time": "2021-07-19T06:14:47+00:00"
+        },
+        {
+            "name": "samasend/laravel-make-scope",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SamAsEnd/laravel-make-scope.git",
+                "reference": "e7fc074536b280674e91ab11159fdd1cd02408ea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SamAsEnd/laravel-make-scope/zipball/e7fc074536b280674e91ab11159fdd1cd02408ea",
+                "reference": "e7fc074536b280674e91ab11159fdd1cd02408ea",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^6.0|^7.0|^8.0",
+                "illuminate/support": "^6.0|^7.0|^8.0",
+                "php": "^7.2|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "SamAsEnd\\ScopeMake\\ScopeMakeCommandServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SamAsEnd\\ScopeMake\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "SamAsEnd",
+                    "email": "4sam21@gmail.com"
+                }
+            ],
+            "description": "Brings make:scope command to laravel",
+            "keywords": [
+                "laravel",
+                "make",
+                "scope"
+            ],
+            "support": {
+                "issues": "https://github.com/SamAsEnd/laravel-make-scope/issues",
+                "source": "https://github.com/SamAsEnd/laravel-make-scope/tree/v1.1.0"
+            },
+            "time": "2021-07-05T02:55:46+00:00"
         },
         {
             "name": "sebastian/cli-parser",

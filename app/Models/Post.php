@@ -27,7 +27,7 @@ class Post extends Model
         return $this->fields[$field] ?? null;
     }
 
-    public function lang($lang)
+    public function _lang($lang)
     {
         return $this->where('lang', $lang)->where('parent_id', $this->id)->first();
     }

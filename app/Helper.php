@@ -61,6 +61,18 @@ final class Helper
         ],
     ];
 
+    public static function langDetails($langCode)
+    {
+        $langDetails = null;
+        foreach (self::$languages as $language) {
+            if ($language['lang'] == $langCode) {
+                $langDetails = $language;
+            }
+        }
+
+        return $langDetails;
+    }
+
     /**
      * @return mixed
      */
@@ -125,14 +137,6 @@ final class Helper
                 $constraint->aspectRatio();
             })->save($path . '/' . $imageName . '.' . $extension, $quality, $extension);
         }
-
-        // for original image
-        /*$path = public_path("uploads/images/woriginal/" . $date);
-        if (! File::exists($path))
-            File::makeDirectory($path, 755, true, true);
-
-        $intervention->save($path . '/' . $imageName . '.' . $extension);*/
-
 
         return $date . '/' . $imageName . '.' . $extension;
     }

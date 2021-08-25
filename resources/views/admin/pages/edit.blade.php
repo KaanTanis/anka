@@ -3,6 +3,8 @@
 @push('header.top')
 <link rel="stylesheet" type="text/css" href="/assets/css/select2.min.css">
 <script src="https://cdn.tiny.cloud/1/7isaa99gbuhj3vcz5a24uek5vqil4qpeiiercz5c8ua5jq4i/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" integrity="sha512-Cv93isQdFwaKBV+Z4X8kaVBYWHST58Xb/jVOcV9aRsGSArZsgAnFIhMpDoMDcFNoUtday1hdjn0nGp3+KZyyFw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 @endpush
 
 @push('footer')
@@ -25,13 +27,11 @@
             <x-back-button />
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
-                    <h4 class="page-title">{{ __('Sayfa Ekle') }}</h4>
+                    <h4 class="page-title">{{ __('Sayfa Ekle') }} @if($page->lang) <i class="flag-icon flag-icon-{{ \App\Helper::langDetails($page->lang)['flag_code'] }} flag-icon-square"></i> @endif</h4>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
-
-
                     <x-alert />
                     <form action="{{ route('admin.pages.updateOrCreate', ['type' => request()->type, 'page' => $page->id]) }}" method="post" enctype="multipart/form-data">
                         @csrf

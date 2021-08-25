@@ -50,10 +50,10 @@ class PageController extends Controller
     {
         $lang = \request()->lang;
         if ($lang) {
-            $langPage = $page->lang($lang);
+            $langPage = $page->_lang($lang);
 
             if (is_null($langPage)) {
-                $original = $page->select('title', 'type', 'fields')->first()->toArray();
+                $original = Post::where('id', $page->id)->select('title', 'type')->first()->toArray();
                 $copy = array_merge($original, ['lang' => $lang, 'parent_id' => $page->id]);
 
                 $page = Post::create($copy);
@@ -159,6 +159,8 @@ class PageController extends Controller
      */
     public function destroy($type, Post $page)
     {
+        Post::where('parent_id', $page->id)->delete();
+        // todo: model
         $page->delete();
         // todo: destroy files
 
