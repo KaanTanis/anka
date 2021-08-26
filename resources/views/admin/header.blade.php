@@ -28,7 +28,14 @@
     <div class="lds-ripple"><div></div><div></div></div>
 </div>
 --}}
-
+<script>
+    const areYouSure = "{{ __('Are You Sure?') }}"
+    const youDeletingImage = "{{ __('You are deleting an image') }}"
+    const yesDelete = "{{ __('Yes, delete it!') }}"
+    const cancel = "{{ __('Nah. Cancel.') }}"
+    const okay = "{{ __('Okay') }}"
+    const pageDestroying = "{{ __('The page will be permanently destroying') }}"
+</script>
 
 
 <div class="main-wrapper">

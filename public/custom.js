@@ -1,10 +1,10 @@
 function imgDestroyBtn(url, id = null) {
     Swal.fire({
-        title: 'Emin misin?',
-        text: 'Bir görsel siliyorsun.',
+        title: areYouSure,
+        text: youDeletingImage,
         icon: 'question',
-        confirmButtonText: 'Evet, sil.',
-        cancelButtonText: 'Vazgeç',
+        confirmButtonText: yesDelete,
+        cancelButtonText: cancel,
         showCancelButton: true
     }).then((result) => {
         if (result.isConfirmed) {
@@ -12,7 +12,7 @@ function imgDestroyBtn(url, id = null) {
                 Swal.fire({
                     title: res.data.message,
                     icon: res.data.status,
-                    confirmButtonText: 'Tamam'
+                    confirmButtonText: okay
                 })
                 if(res.data.status === 'success') {
                     if ($('#image_id_' + id).length) {
@@ -33,11 +33,11 @@ function imgDestroyBtn(url, id = null) {
 
 function destroyPage(url) {
     Swal.fire({
-        title: 'Emin misin?',
-        text: 'Sayfa kalıcı olarak silinecek',
+        title: areYouSure,
+        text: pageDestroying,
         icon: 'question',
-        confirmButtonText: 'Evet, sil.',
-        cancelButtonText: 'Vazgeç',
+        confirmButtonText: yesDelete,
+        cancelButtonText: cancel,
         showCancelButton: true
     }).then((result) => {
         if (result.isConfirmed) {
@@ -46,7 +46,7 @@ function destroyPage(url) {
                     Swal.fire({
                         title: res.data.message,
                         icon: res.data.status,
-                        confirmButtonText: 'Tamam'
+                        confirmButtonText: okay
                     })
                 }
 

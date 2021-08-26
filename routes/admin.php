@@ -36,5 +36,7 @@ Route::middleware('auth')->group(function () {
 
         Route::post('{type}/destroy-array/{post}/{field}/{arrayId}', [PageController::class, 'destroyArrayField'])
             ->name('admin.pages.destroyArrayFields');
+        Route::post('{type}/sort-array/{post}/{field}/}', [PageController::class, 'sortArrayField'])
+            ->name('admin.pages.sortArrayFields');
     });
 });

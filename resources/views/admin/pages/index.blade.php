@@ -7,10 +7,10 @@
         <div class="content">
             <div class="row">
                 <div class="col-sm-4 col-4">
-                    <h4 class="page-title">{{ __('Sayfalar') }}</h4>
+                    <h4 class="page-title">{{ __('Pages') }}</h4>
                 </div>
                 <div class="col-sm-8 col-8 text-right m-b-20">
-                    <a href="{{ route('admin.pages.edit', ['type' => request()->type]) }}" class="btn btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i> {{ __('Yeni Ekle') }}</a>
+                    <a href="{{ route('admin.pages.edit', ['type' => request()->type]) }}" class="btn btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i> {{ __('Add New') }}</a>
                 </div>
             </div>
             <div class="row">
@@ -21,10 +21,10 @@
                         <table class="table table-striped custom-table">
                             <thead>
                             <tr>
-                                <th style="width: 10%">{{ __('Sıra') }}</th>
-                                <th style="width: 90%">{{ __('Sayfa Adı') }}</th>
-                                <th class="text-center">{{ __('Dil') }}</th>
-                                <th class="text-right">{{ __('Eylem') }}</th>
+                                <th style="width: 10%">{{ __('Sort Order') }}</th>
+                                <th style="width: 90%">{{ __('Page Name') }}</th>
+                                <th class="text-center">{{ __('Language') }}</th>
+                                <th class="text-right">{{ __('Action') }}</th>
                             </tr>
                             </thead>
                             <tbody id="sortable">
@@ -44,7 +44,7 @@
                                 </td>
 
                                 <td class="text-right">
-                                    <a href="{{ route('admin.pages.edit', ['type' => request()->type, 'page' => $page->id]) }}" class="btn btn-primary">{{ __('Düzenle') }}</a>
+                                    <a href="{{ route('admin.pages.edit', ['type' => request()->type, 'page' => $page->id]) }}" class="btn btn-primary">{{ __('Edit') }}</a>
                                 </td>
                             </tr>
                             @endforeach

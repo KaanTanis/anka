@@ -27,7 +27,7 @@
             <x-back-button />
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
-                    <h4 class="page-title">{{ __('Sayfa Ekle') }} @if($page->lang) <i class="flag-icon flag-icon-{{ \App\Helper::langDetails($page->lang)['flag_code'] }} flag-icon-square"></i> @endif</h4>
+                    <h4 class="page-title">{{ __('Add Page') }} @if($page->lang) <i class="flag-icon flag-icon-{{ \App\Helper::langDetails($page->lang)['flag_code'] }} flag-icon-square"></i> @endif</h4>
                 </div>
             </div>
             <div class="row">
@@ -74,10 +74,14 @@
                                             <input id="{{ $name }}" name="{{ $name }}{{ $multiple != null ? '[]' : null }}" class="form-control"
                                                    type="{{ $type }}" value="@if(! is_array($value)){{ $value }}@endif" {{ $multiple }} {{ $required }}>
                                             @if(is_array($value))
-                                                <h3 style="margin-top: 15px; position: relative; bottom: -20px">{{ __('Yüklü Ekler') }}</h3>
+                                                <h3 style="margin-top: 15px; position: relative; bottom: -20px">{{ __('Attachments') }}</h3>
                                                 <div class="col-md-12">
-                                                    <div class="row">
-                                                        @foreach($value as $array)
+                                                    <div class="row" id="sortable">
+                                                        @php
+                                                            $collection = collect($value);
+                                                            $sorted = $collection->sortBy('order');
+                                                        @endphp
+                                                        @foreach($sorted->all() as $array)
                                                             <div id="image_id_{{ $array['id'] }}" class="col-md-2 col-xs-4">
                                                                 <i onclick="imgDestroyBtn('{{ route('admin.pages.destroyArrayFields', [
                                                     'type' => request()->type,
@@ -85,7 +89,7 @@
                                                     'field' => $name,
                                                     'arrayId' => $array['id']
                                                     ]) }}', '{{ $array['id'] }}')" class="fa fa-trash imgDestroyBtn"></i>
-                                                                <img style="width: 100%; max-height: 100px; object-fit: cover" src="{{ Helper::getImage($array['src']) }}" alt="">
+                                                                <img class="handle" style="width: 100%; max-height: 100px; object-fit: cover" src="{{ Helper::getImage($array['src']) }}" alt="">
                                                             </div>
                                                         @endforeach
                                                     </div>
@@ -110,12 +114,12 @@
                         </div>
 
                         <div class="m-t-20 text-center">
-                            <button type="submit" class="btn btn-primary submit-btn">{{ __('Kaydet') }}</button>
+                            <button type="submit" class="btn btn-primary submit-btn">{{ __('Save') }}</button>
                             @if($page->exists)
                                 <button type="button" class="btn btn-danger submit-btn" onclick="destroyPage('{{ route('admin.pages.destroy', [
                                     'type' => request()->type,
                                     'page' => $page->id
-                                ]) }}')">{{ __('Sil') }}</button>
+                                ]) }}')">{{ __('Delete') }}</button>
                             @endif
                         </div>
                     </form>
@@ -129,3 +133,31 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/custom.js"></script>
 @endpush
+
+@if($page->exist)
+@push('footer')
+    <style>
+        .handle:hover {
+            cursor: pointer;
+        }
+    </style>
+    <!-- Latest Sortable -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.10.2/Sortable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha256-KM512VNnjElC30ehFwehXjx1YCHPiQkOPmqnrWtpccM=" crossorigin="anonymous"></script>
+
+    <script>
+        $('#sortable').sortable({
+            handle: '.handle',
+            stop: function (event, ui) {
+                let data = $(this).sortable('toArray');
+
+                axios.post('{{ route('admin.pages.sortArrayFields', ['type' => request()->type,
+    'post' => $page->id,
+    'field' => $name]) }}', data).then((res) => {
+                    console.log(res.data)
+                })
+            }
+        });
+    </script>
+@endpush
+@endif

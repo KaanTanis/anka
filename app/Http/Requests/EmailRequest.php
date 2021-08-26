@@ -37,11 +37,11 @@ class EmailRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'İsim alanı gereklidir',
-            'email.required' => 'Email alanı gereklidir',
-            'email.email' => 'Email adresi geçersiz',
-            'phone.required' => 'Telefon alanı gereklidir',
-            'checkbox.required' => 'Lütfen koşulları onaylayınız.'
+            'name.required' => __('The name is required'),
+            'email.required' => __('The email is required'),
+            'email.email' => __('Given invalid email address'),
+            'phone.required' => __('The phone is required'),
+            'checkbox.required' => __('Please tick the checkbox')
         ];
     }
 

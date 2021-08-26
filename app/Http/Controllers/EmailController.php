@@ -21,10 +21,10 @@ class EmailController extends Controller
     public function contactForm(EmailRequest $request): \Illuminate\Http\JsonResponse
     {
         if (! $request->subject)
-            $request->merge(['subject' => 'Bilgi almak istiyorum']);
+            $request->merge(['subject' => __('I want to get information')]);
 
         \App\Models\Log::create([
-            'title' => 'İletişim Formu Gönderildi',
+            'title' => __('Contact form sent successfully'),
             'log_type' => 'contact_form',
             'log_details' => json_encode([
                 'ip' => \request()->ip(),
@@ -37,7 +37,7 @@ class EmailController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => [__('Mesajınız başarıyla iletişilmiştir.')]
+            'message' => [__('Contact form sent successfully')]
         ]);
     }
 

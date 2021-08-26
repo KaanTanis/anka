@@ -24,7 +24,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             \App\Models\Log::create([
-                'title' => 'Giriş Yapıldı',
+                'title' => __('Login'),
                 'log_type' => 'login_success',
                 'log_details' => json_encode([
                     'ip' => \request()->ip(),
@@ -37,7 +37,7 @@ class LoginController extends Controller
         }
 
         \App\Models\Log::create([
-            'title' => 'Giriş Denemesi',
+            'title' => __('Login failed'),
             'log_type' => 'login_fail',
             'log_details' => json_encode([
                 'ip' => \request()->ip(),
@@ -46,7 +46,7 @@ class LoginController extends Controller
             ])
         ]);
 
-        return back()->withMessage(__('Kullanıcı adı veya şifre hatalı'));
+        return back()->withMessage(__('These informations doesn\'t match our records'));
     }
 
     /**
@@ -60,7 +60,7 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
 
         \App\Models\Log::create([
-            'title' => 'Çıkış Yapıldı',
+            'title' => 'Logout',
             'log_type' => 'logout',
             'log_details' => json_encode([
                 'ip' => \request()->ip(),

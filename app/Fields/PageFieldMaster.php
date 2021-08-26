@@ -21,7 +21,7 @@ class PageFieldMaster
     public function __construct()
     {
         $this->defaultFields = [
-            Input::make('Başlık', 'title', false),
+            Input::make(__('Title'), 'title', false),
         ];
     }
 

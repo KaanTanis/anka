@@ -85,9 +85,10 @@ class PageController extends Controller
                 if (is_array($data['fields'][$key])) {
                     $bulk = $page->field($key); // Old files infos
                     $id = uniqid();
+                    $orderNo = 1;
                     foreach ($data['fields'][$key] as $arrayField) {
                         $src = Helper::image($arrayField);
-                        $bulk[] = ['id' => $id++, 'src' => $src]; // Merge with old files
+                        $bulk[] = ['id' => $id++, 'order' => $orderNo++, 'src' => $src]; // Merge with old files
                     }
 
                     $data['fields'][$key] = $bulk; // Updata with new data
@@ -118,7 +119,7 @@ class PageController extends Controller
 
         return back()->with([
             'status' => 'success',
-            'message' => __('Sayfa başarıyla güncellendi')
+            'message' => __('Successfully Updated')
         ]);
     }
 
@@ -148,7 +149,7 @@ class PageController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => __('Ek silindi')
+            'message' => __('Successfully Updated')
         ]);
     }
 
@@ -166,7 +167,7 @@ class PageController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => __('Sayfa silindi'),
+            'message' => __('Successfully Updated'),
             'redirect' => route('admin.pages.index', \request()->type)
         ]);
     }
@@ -188,7 +189,7 @@ class PageController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => __('Silme işlemi başarılı'),
+            'message' => __('Successfully Updated'),
             'redirect' => route('admin.pages.edit', [
                 'type' => \request()->type,
                 'page' => $post->id
@@ -209,7 +210,36 @@ class PageController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Sıralama güncellendi'
+            'message' => __('Successfully Updated')
+        ]);
+    }
+
+    public function sortArrayField($type, Post $post, $field, Request $request)
+    {
+        $fieldName = Str::between($field, '[', ']');
+
+        $data = $post->fields;
+        $oldFields = $data[$fieldName];
+        $collection = collect($oldFields);
+        $newCollectionForField = [];
+
+        $order = 1;
+        foreach ($request->all() as $item) {
+            $arrayId = Str::after($item, 'image_id_');
+
+            $newCollection = $collection->where('id', $arrayId)->first();
+            $newCollection['order'] = $order++;
+            $newCollectionForField[$fieldName][] = $newCollection;
+        }
+
+        unset($data[$fieldName]);
+        $merged = array_merge($data, $newCollectionForField);
+
+        $post->update(['fields' => $merged]);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => __('Successfully Updated')
         ]);
     }
 }
