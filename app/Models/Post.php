@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,13 +23,28 @@ class Post extends Model
         'fields' => 'array'
     ];
 
-    public function field($field)
+    public function field($field, $forceLang = null)
     {
-        return $this->fields[$field] ?? null;
+//        return $this->fields[$field] ?? null;
+
+        return $this->where('lang', $forceLang ?? app()->getLocale())
+                ->where('parent_id', $this->id)
+                ->first()
+                ->fields[$field]
+            ?? $this->fields[$field];
     }
 
     public function _lang($lang)
     {
         return $this->where('lang', $lang)->where('parent_id', $this->id)->first();
+    }
+
+    public function translate($field, $forceLang = null)
+    {
+        return $this->where('lang', $forceLang ?? app()->getLocale())
+            ->where('parent_id', $this->id)
+            ->first()
+            ->$field
+            ?? $this->$field;
     }
 }

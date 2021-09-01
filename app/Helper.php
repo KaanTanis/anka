@@ -54,11 +54,12 @@ final class Helper
             'lang' => 'en',
             'flag_code' => 'gb'
         ],
-        [
-            'lang_name' => 'Español',
-            'lang' => 'es',
-            'flag_code' => 'es'
-        ],
+    ];
+
+    public static $defaultLanguage = [
+        'lang_name' => 'Türkçe',
+        'lang' => 'tr',
+        'flag_code' => 'tr'
     ];
 
     public static function langDetails($langCode)
@@ -69,6 +70,9 @@ final class Helper
                 $langDetails = $language;
             }
         }
+
+        if (is_null($langDetails))
+            return self::$defaultLanguage;
 
         return $langDetails;
     }

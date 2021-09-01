@@ -44,6 +44,7 @@ class PageFieldMaster
             ['page_details' => [
                 'page_name' => $method['page_name'],
                 'method_name' => $pageType,
+                'limit' => $method['limit'],
                 'icon' => $method['icon'],
             ]]
         );

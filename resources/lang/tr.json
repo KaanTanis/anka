@@ -1,15 +1,19 @@
 {
     "Title": "Başlık",
-    "Add Page": "Sayfa Ekle",
+    "Add Item": "Öğe Ekle",
     "Attachments": "Ekler",
     "Save": "Kaydet",
     "Delete": "Sil",
     "Successfully Updated": "Güncelleme Başarılı",
-    "Pages": "Sayfalar",
-    "Sort Order": "Sıra",
-    "Page Name": "Sayfa Sırası",
+    "Items": "Öğeler",
+    "Sort": "Sıra",
+    "Item Name": "Öğe Adı",
     "Language": "Dil",
     "Action": "Eylem",
     "Edit": "Düzenle",
-    "Add New": "Yeni Ekle"
+    "Add New": "Yeni Ekle",
+    "Update Profile": "Profili Güncelle",
+    "Old Password": "Eski Şifre",
+    "New Password": "Yeni Şifre",
+    "New Password Again": "Yeni Şifre Tekrar"
 }

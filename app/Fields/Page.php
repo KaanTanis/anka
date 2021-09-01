@@ -14,11 +14,12 @@ class Page
      * @param string $icon
      * @return array
      */
-    public static function make($pageName, $fields, $icon = 'fa fa-dot-circle-o'): array
+    public static function make($pageName, $fields, $limit = null, $icon = 'fa fa-dot-circle-o'): array
     {
         return [
             'page_name' => $pageName,
             'fields' => $fields,
+            'limit' => $limit,
             'icon' => $icon
         ];
     }

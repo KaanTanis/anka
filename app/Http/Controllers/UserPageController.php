@@ -15,16 +15,6 @@ class UserPageController extends Controller
         return view('front.home');
     }
 
-    public function projects()
-    {
-        return view('front.projects');
-    }
-
-    public function project(Post $post, $title)
-    {
-        return view('front.project', compact('post'));
-    }
-
     public function page(Post $post, $title)
     {
         return view('front.page', compact('post'));

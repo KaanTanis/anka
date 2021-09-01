@@ -92,6 +92,8 @@
                     <span>Admin</span>
                 </a>
                 <div class="dropdown-menu">
+                    <a href="{{ route('admin.profile') }}" class="dropdown-item">{{ __('Profile') }}</a>
+
                     <form action="{{ route('logout') }}" method="post">
                         @csrf
                         <button style="cursor:pointer;" class="dropdown-item">{{ __('Çıkış') }}</button>

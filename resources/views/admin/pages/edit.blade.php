@@ -27,7 +27,7 @@
             <x-back-button />
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
-                    <h4 class="page-title">{{ __('Add Page') }} @if($page->lang) <i class="flag-icon flag-icon-{{ \App\Helper::langDetails($page->lang)['flag_code'] }} flag-icon-square"></i> @endif</h4>
+                    <h4 class="page-title">{{ __('Add Item') }} @if($page->lang) <i class="flag-icon flag-icon-{{ \App\Helper::langDetails($page->lang)['flag_code'] }} flag-icon-square"></i> @endif</h4>
                 </div>
             </div>
             <div class="row">
@@ -108,6 +108,11 @@
                                                       rows="3" {{ $required }}>{{ $value }}</textarea>
                                         </div>
                                     </div>
+                                    @break
+                                    @case('hr')
+                                        <div class="col-12">
+                                            <div style="width: 100%; height: 1px; background-color: rgba(0,0,0,.2); margin: 20px 0"></div>
+                                        </div>
                                     @break
                                 @endswitch
                             @endforeach

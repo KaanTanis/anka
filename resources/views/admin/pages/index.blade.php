@@ -7,11 +7,19 @@
         <div class="content">
             <div class="row">
                 <div class="col-sm-4 col-4">
-                    <h4 class="page-title">{{ __('Pages') }}</h4>
+                    <h4 class="page-title">{{ __('Items') }}</h4>
                 </div>
+
+                @php
+                    $pageFields = new \App\PageFields();
+                @endphp
+
+                @if($pageFields->get()['page_details']['limit'] < $pages->count() || $pageFields->get()['page_details']['limit'] == null)
                 <div class="col-sm-8 col-8 text-right m-b-20">
                     <a href="{{ route('admin.pages.edit', ['type' => request()->type]) }}" class="btn btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i> {{ __('Add New') }}</a>
                 </div>
+                @endif
+
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -21,8 +29,8 @@
                         <table class="table table-striped custom-table">
                             <thead>
                             <tr>
-                                <th style="width: 10%">{{ __('Sort Order') }}</th>
-                                <th style="width: 90%">{{ __('Page Name') }}</th>
+                                <th style="width: 10%">{{ __('Sort') }}</th>
+                                <th style="width: 90%">{{ __('Item Name') }}</th>
                                 <th class="text-center">{{ __('Language') }}</th>
                                 <th class="text-right">{{ __('Action') }}</th>
                             </tr>

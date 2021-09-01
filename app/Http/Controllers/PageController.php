@@ -48,6 +48,7 @@ class PageController extends Controller
      */
     public function edit($type, Post $page)
     {
+        // todo: PageFields limit check
         $lang = \request()->lang;
         if ($lang) {
             $langPage = $page->_lang($lang);
