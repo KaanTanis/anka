@@ -55,13 +55,22 @@ class PageFields extends PageFieldMaster
         ]);
     }
 
-    public function blog()
+    public function pages()
+    {
+        return Page::make('Sayfalar', [
+            Textarea::make('İçerik', 'content')->tinymce(),
+            Input::make('Banner Görseli', 'banner')->type('file')
+        ]);
+    }
+
+    /*public function blog()
     {
         return Page::make('Blog', [
+            Textarea::make('Kısa Açıklama', 'description')->tinymce(),
             Textarea::make('İçerik', 'content')->tinymce(),
             Input::make('Kapak Görseli', 'cover')->type('file'),
             Input::make('Banner Görseli', 'banner')->type('file')
         ]);
-    }
+    }*/
 
 }

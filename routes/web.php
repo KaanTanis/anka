@@ -16,16 +16,14 @@ Route::post('/subscribe', [SubscribeController::class, 'subscribeForm'])
 
 Route::get('/locale/{lang}', function ($lang) {
     session()->put('lang', $lang);
-    return back();
+    return redirect('/');
 })->name('locale');
 
 Route::get('/', [UserPageController::class, 'home']);
 Route::get('/s/{post}/{title}', [UserPageController::class, 'page'])->name('user.page');
 
-Route::get('test', function () {
-    dd(\App\Helper::langDetails('en'));
-});
-
+//Route::get('/blog', [UserPageController::class, 'blog'])->name('blog');
+Route::get('/iletisim', [UserPageController::class, 'contact'])->name('contact');
 
 
 
