@@ -7,6 +7,7 @@ use App\Fields\Input;
 use App\Fields\Page;
 use App\Fields\PageFieldMaster;
 use App\Fields\Textarea;
+use Faker\Provider\Text;
 use Illuminate\Support\Arr;
 
 /**
@@ -50,6 +51,7 @@ class PageFields extends PageFieldMaster
     {
         return Page::make('Servisler', [
             Input::make('Kapak', 'cover')->type('file'),
+            Input::make('Banner', 'banner')->type('file'),
             Input::make('Açıklama', 'description'),
             Textarea::make('İçerik', 'content')->tinymce()
         ]);
@@ -60,6 +62,18 @@ class PageFields extends PageFieldMaster
         return Page::make('Sayfalar', [
             Textarea::make('İçerik', 'content')->tinymce(),
             Input::make('Banner Görseli', 'banner')->type('file')
+        ]);
+    }
+
+    public function yachts()
+    {
+        return Page::make('Yatlar', [
+            Textarea::make('Açıklama', 'description'),
+            Textarea::make('İçerik', 'content')->tinymce(),
+            Input::make('Uzunluk', 'length')->col(6),
+            Input::make('Max Kişi', 'max_people')->col(6),
+            Input::make('Fiyat', 'price')->col(6),
+
         ]);
     }
 

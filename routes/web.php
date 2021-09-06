@@ -24,6 +24,7 @@ Route::get('/s/{post}/{title}', [UserPageController::class, 'page'])->name('user
 
 //Route::get('/blog', [UserPageController::class, 'blog'])->name('blog');
 Route::get('/iletisim', [UserPageController::class, 'contact'])->name('contact');
+Route::get('/satistaki-tekneler', [UserPageController::class, 'yachts'])->name('yachts');
 
 
 

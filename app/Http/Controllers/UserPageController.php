@@ -24,4 +24,9 @@ class UserPageController extends Controller
     {
         return view('front.contact');
     }
+
+    public function yachts()
+    {
+        return view('front.yachts');
+    }
 }

@@ -31,7 +31,7 @@ class Post extends Model
                 ->where('parent_id', $this->id)
                 ->first()
                 ->fields[$field]
-            ?? $this->fields[$field];
+            ?? ($this->fields[$field]  ?? null);
     }
 
     public function _lang($lang)
