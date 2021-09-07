@@ -139,7 +139,7 @@
     <script src="/custom.js"></script>
 @endpush
 
-@if($page->exist)
+@if($page->exists)
 @push('footer')
     <style>
         .handle:hover {

@@ -30,7 +30,7 @@
 --}}
 <script>
     const areYouSure = "{{ __('Are You Sure?') }}"
-    const youDeletingImage = "{{ __('You are deleting an image') }}"
+    const youDeletingImage = "{{ __('You are deleting an object') }}"
     const yesDelete = "{{ __('Yes, delete it!') }}"
     const cancel = "{{ __('Nah. Cancel.') }}"
     const okay = "{{ __('Okay') }}"

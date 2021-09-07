@@ -15,5 +15,13 @@
     "Update Profile": "Profili Güncelle",
     "Old Password": "Eski Şifre",
     "New Password": "Yeni Şifre",
-    "New Password Again": "Yeni Şifre Tekrar"
+    "New Password Again": "Yeni Şifre Tekrar",
+    "I want to get information": "Bilgi Almak İstiyorum",
+    "Contact form sent successfully": "İletişim formu başarıyla gönderdildi",
+    "Are You Sure?": "Emin misin?",
+    "You are deleting an object": "Bir obje siliyorsun",
+    "Yes, delete it!": "Evet, sil!",
+    "Nah. Cancel.": "Hayır. Vazgeçtim.",
+    "Okay": "Tamam",
+    "The page will be permanently destroying": "Sayfa kalıcı olarak silinecektir"
 }

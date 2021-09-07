@@ -53,7 +53,8 @@ class PageFields extends PageFieldMaster
             Input::make('Kapak', 'cover')->type('file'),
             Input::make('Banner', 'banner')->type('file'),
             Input::make('Açıklama', 'description'),
-            Textarea::make('İçerik', 'content')->tinymce()
+            Textarea::make('İçerik', 'content')->tinymce(),
+            Input::make('Galeri', 'gallery')->type('file')->multiple()
         ]);
     }
 
@@ -61,7 +62,8 @@ class PageFields extends PageFieldMaster
     {
         return Page::make('Sayfalar', [
             Textarea::make('İçerik', 'content')->tinymce(),
-            Input::make('Banner Görseli', 'banner')->type('file')
+            Input::make('Banner Görseli', 'banner')->type('file'),
+            Input::make('Galeri', 'gallery')->type('file')->multiple()
         ]);
     }
 
@@ -73,6 +75,8 @@ class PageFields extends PageFieldMaster
             Input::make('Uzunluk', 'length')->col(6),
             Input::make('Max Kişi', 'max_people')->col(6),
             Input::make('Fiyat', 'price')->col(6),
+            Input::make('Kapak', 'cover')->col(6)->type('file'),
+            Input::make('Galeri', 'gallery')->type('file')->multiple()
 
         ]);
     }
