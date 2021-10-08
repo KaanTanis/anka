@@ -6,6 +6,7 @@ use App\Fields\Hr;
 use App\Fields\Input;
 use App\Fields\Page;
 use App\Fields\PageFieldMaster;
+use App\Fields\Select;
 use App\Fields\Textarea;
 use Faker\Provider\Text;
 use Illuminate\Support\Arr;
@@ -26,69 +27,62 @@ class PageFields extends PageFieldMaster
         ]);
     }
 
-    public function homePage()
+    public function product()
     {
-        return Page::make(__('Sayfa Elemanları'), [
-            Input::make(__('Özellik 1'), 'feature_1'),
-            Input::make(__('Özellik 2'), 'feature_2'),
-            Input::make(__('Özellik 3'), 'feature_3'),
-            Input::make(__('Özellik 4'), 'feature_4'),
-
-            Hr::make(),
-
-            Input::make('Orta Yazı Başlık 1', 'middle_title_1'),
-            Input::make('Orta Yazı Başlık 2', 'middle_title_2'),
-            Input::make('Orta Yazı Açıklama', 'middle_description'),
-
-            Hr::make(),
-
-            Textarea::make('Hakkımızda Sayfası', 'about_page_content')->tinymce(),
-            Input::make('Hakkımızda Galerisi', 'about_gallery')->type('file')->multiple()
-        ], 1);
-    }
-
-    public function services()
-    {
-        return Page::make('Servisler', [
-            Input::make('Kapak', 'cover')->type('file'),
-            Input::make('Banner', 'banner')->type('file'),
-            Input::make('Açıklama', 'description'),
+        return Page::make('Ürünler', [
+            Select::make('Kategori', 'categories')->model('categories'),
+            Input::make('Görsel', 'cover')->type('file'),
+            Textarea::make('Açıklama', 'description')->tinymce(),
             Textarea::make('İçerik', 'content')->tinymce(),
-            Input::make('Galeri', 'gallery')->type('file')->multiple()
-        ]);
-    }
-
-    public function pages()
-    {
-        return Page::make('Sayfalar', [
-            Textarea::make('İçerik', 'content')->tinymce(),
-            Input::make('Banner Görseli', 'banner')->type('file'),
-            Input::make('Galeri', 'gallery')->type('file')->multiple()
-        ]);
-    }
-
-    public function yachts()
-    {
-        return Page::make('Yatlar', [
-            Textarea::make('Açıklama', 'description'),
-            Textarea::make('İçerik', 'content')->tinymce(),
-            Input::make('Uzunluk', 'length')->col(6),
-            Input::make('Max Kişi', 'max_people')->col(6),
-            Input::make('Fiyat', 'price')->col(6),
-            Input::make('Kapak', 'cover')->col(6)->type('file'),
-            Input::make('Galeri', 'gallery')->type('file')->multiple()
+            Input::make('Gram', 'gram')->col(3),
+            Input::make('Adet', 'piece')->col(3),
+            Input::make('Ambalaj Türü', 'amb_type')->col(3),
+            Input::make('Ürün Grubu', 'prod_group')->col(3),
+            Input::make('Ürün Kodu', 'prod_code')->col(3),
+            Input::make('Ağırlık', 'weight')->col(3),
+            Input::make('Renk Kodu', 'color'),
+            Input::make('Galeri', 'images')->type('file')->multiple(),
 
         ]);
     }
 
-    /*public function blog()
+    public function categories()
+    {
+        return Page::make('Ürün Kategorileri', [
+            Input::make('Renk Kodu', 'color'),
+        ]);
+    }
+
+    public function field()
+    {
+        return Page::make('Alanlar', [
+            Input::make('Hakkımızda Başlık', 'about_title'),
+            Textarea::make('Hakkımızda', 'about_content'),
+            Input::make('Buton Adı', 'about_button'),
+            Input::make('Buton URL', 'about_button_url'),
+            Input::make('Hakkımızda Cover', 'about_cover')->type('file'),
+            Hr::make()
+        ]);
+    }
+
+    public function blog()
     {
         return Page::make('Blog', [
-            Textarea::make('Kısa Açıklama', 'description')->tinymce(),
+            Input::make('Açıklama', 'description'),
+            Input::make('Kapak', 'cover')->type('file'),
+            Input::make('Banner', 'banner')->type('file'),
             Textarea::make('İçerik', 'content')->tinymce(),
-            Input::make('Kapak Görseli', 'cover')->type('file'),
-            Input::make('Banner Görseli', 'banner')->type('file')
         ]);
-    }*/
+    }
+
+    public function page()
+    {
+        return Page::make('Sayfalar', [
+            Input::make('Kapak', 'cover')->type('file'),
+            Input::make('Banner', 'banner')->type('file'),
+            Textarea::make('İçerik', 'content')->tinymce(),
+        ]);
+    }
+
 
 }

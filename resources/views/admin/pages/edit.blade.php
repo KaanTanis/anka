@@ -51,6 +51,7 @@
                                     $required = $field->required;
                                     $tinymce = $field->tinymce;
                                     $col = $field->col;
+                                    $model = $field->model;
                                     $value = ($field->fieldsTable ? ($page->fields[$field->name] ?? null) : $page[$field->name]) ?? null
                                 @endphp
                                 @switch($field->component)
@@ -109,6 +110,17 @@
                                         </div>
                                     </div>
                                     @break
+                                    @case('select-field')
+                                    <div class="col-12">
+                                        <label for="{{ $name }}">{{ $label }}</label>
+                                        <select class="form-control" name="{{ $name }}" id="{{ $name }}">
+                                            @foreach(\App\Models\Post::where('type', $model)->get() as $mod)
+                                            <option {{ $page->field($model) == $mod->id ? 'selected' : null }} value="{{ $mod->id }}">{{ $mod->translate('title') }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    @break
+
                                     @case('hr')
                                         <div class="col-12">
                                             <div style="width: 100%; height: 1px; background-color: rgba(0,0,0,.2); margin: 20px 0"></div>

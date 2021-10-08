@@ -23,5 +23,10 @@
     "Yes, delete it!": "Evet, sil!",
     "Nah. Cancel.": "Hayır. Vazgeçtim.",
     "Okay": "Tamam",
-    "The page will be permanently destroying": "Sayfa kalıcı olarak silinecektir"
+    "The page will be permanently destroying": "Sayfa kalıcı olarak silinecektir",
+    "The name is required": "İsim alanı gereklidir",
+    "The email is required": "Email alanı gereklidir",
+    "Given invalid email address":  "Geçersiz e-posta adresi algılandı",
+    "The phone is required": "Telefon alanı gereklidir",
+    "Please tick the checkbox": "Lütfen kutuyu işaretleyin"
 }

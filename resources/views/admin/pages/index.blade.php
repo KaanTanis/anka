@@ -31,6 +31,7 @@
                             <tr>
                                 <th style="width: 10%">{{ __('Sort') }}</th>
                                 <th style="width: 90%">{{ __('Item Name') }}</th>
+                                <th style="width: 90%">{{ __('Kategori') }}</th>
                                 <th class="text-center">{{ __('Language') }}</th>
                                 <th class="text-right">{{ __('Action') }}</th>
                             </tr>
@@ -40,6 +41,7 @@
                             <tr id="{{ $page->id }}">
                                 <td style="width: 10%" class="handle"><i class="fa fa-arrows-v"></i></td>
                                 <td style="width: 90%">{{ $page->title }}</td>
+                                <td style="width: 90%">{{ \App\Models\Post::where('id', $page->field('categories'))->first()->title ?? null }}</td>
 
                                 <td class="text-center">
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">

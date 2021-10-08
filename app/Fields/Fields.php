@@ -65,6 +65,10 @@ class Fields
      * @var
      */
     public $tinymce;
+    /**
+     * @var
+     */
+    public $model;
 
     /**
      * @param $label
@@ -158,6 +162,15 @@ class Fields
     public function tinymce(): Fields
     {
         $this->tinymce = true;
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function model($model): Fields
+    {
+        $this->model = $model;
         return $this;
     }
 }

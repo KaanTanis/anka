@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\Room;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class UserPageController extends Controller
 {
@@ -25,8 +26,13 @@ class UserPageController extends Controller
         return view('front.contact');
     }
 
-    public function yachts()
+    public function products($cat_id, $title = null)
     {
-        return view('front.yachts');
+        $category = Post::find($cat_id);
+        if (! $title)
+            return redirect()->route('products', ['cat_id' => $cat_id, 'title' => Str::slug($category->translate('title'))]);
+
+        $products = Post::where('type', 'product')->where('fields->categories', $cat_id)->get();
+        return view('front.products', compact('products', 'category'));
     }
 }

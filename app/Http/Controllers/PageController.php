@@ -103,7 +103,7 @@ class PageController extends Controller
         $data['type'] = $type;
 
         $oldFields = $page->fields;
-        $newDatas = $data['fields'];
+        $newDatas = $data['fields'] ?? [];
 
         foreach ($newDatas as $key => $value) {
             unset($oldFields[$key]);
